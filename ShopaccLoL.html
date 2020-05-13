@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title></title>
+    <style>
+        body {
+            background-image: url("hinh-nen-lien-minh-lol-dep-hd-6.jpg");
+            background-size:cover;
+            background-attachment: fixed;
+        }
+
+        #id01 th {
+            width: 270px;
+            background-color: #000000;
+            text-align: center;
+            padding: 8px;
+            transition: 1s ease;
+            cursor: pointer;
+        }
+
+        #id02 td {
+            width: 290px;
+            background-color: #000000;
+            text-align: center;
+            padding: 8px;
+        }
+
+        #id01 th:hover {
+            background-color: #808080;
+        }
+
+        .drop:hover .dropdown {
+            display: block
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            margin-top: 15px;
+            margin-left: -8px;
+        }
+
+            .dropdown a {
+                display: block;
+                float: left;
+                background-color: #000000;
+                width: 300px;
+                height: 30px;
+            }
+
+                .dropdown a:hover {
+                    background-color: #808080;
+                }
+
+        select {
+            padding: 8px;
+            background-color: #4cff00;
+            border-radius: 8px;
+        }
+
+        .u {
+            float: left;
+            width: 54%;
+        }
+
+        .l {
+            float: left;
+            width: 46%;
+        }
+
+        .u th {
+            width: 500px;
+        }
+
+        #id03 img {
+            transition: 1s ease;
+        }
+
+        #id03 img:hover {
+            opacity: 0.8;
+        }
+
+        .mot {
+            float: left;
+            width: 25%;
+            color: #ff6a00;
+            text-align: center;
+        }
+
+        .hai {
+            float: left;
+            width: 25%;
+            color: #ff6a00;
+            text-align: center;
+        }
+
+        .ba {
+            float: left;
+            width: 25%;
+            color: #ff6a00;
+            text-align: center;
+        }
+
+        .bon {
+            float: left;
+            width: 25%;
+            color: #ff6a00;
+            text-align: center;
+            
+        }
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 999; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            margin-left: 420px;
+            margin-top: 120px;
+            width: 500px;
+            height: 400px;
+            background-image: url("temoo.jpg");
+            background-size: cover;
+            padding: 30px;
+        }
+
+        .modal-content {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes animatezoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        
+
+        .error {
+            color: #ffd800
+        }
+
+        .error {
+            color: #ffd800
+        }
+
+        #id04 input[type="text"] {
+            padding: 6px;
+        }
+
+        #id04 input[type="password"] {
+            padding: 6px;
+        }
+
+        .fix1 {
+            margin-top: 300px;
+            width: 200px;
+            height: 40px;
+            background-color: #ff6a00;
+            color: #000000;
+            position: fixed;
+            z-index: 2;
+            font-size: 20px;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .fix2 {
+            margin-top: 350px;
+            width: 200px;
+            height: 40px;
+            background-color: #ffd800;
+            color: #000000;
+            position: fixed;
+            z-index: 2;
+            font-size: 20px;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .fix3 {
+            margin-top: 400px;
+            width: 200px;
+            height: 40px;
+            background-color: #0768de;
+            color: #ffffff;
+            position: fixed;
+            z-index: 2;
+            font-size: 20px;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .fix4 {
+            margin-top: 450px;
+            width: 200px;
+            height: 40px;
+            background-color: #ff0000;
+            color: #000000;
+            position: fixed;
+            z-index: 2;
+            font-size: 20px;
+            text-align: center;
+            padding: 5px;
+        }
+    </style>
+    <script>
+        function Ktra() {
+            var name = document.getElementById("name").value;// lấy dữ liệu từ from nhập vào
+            var email = document.getElementById("email").value;
+            var pass = document.getElementById("pass").value;
+            //var re = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            var result = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            if (name == "") {
+                document.getElementById('errname').innerHTML = "Bạn chưa nhập đầy đủ!";
+            } else {
+                document.getElementById('errname').innerHTML = "";
+            }
+
+            if (!result) {
+                document.getElementById('erremail').innerHTML = "Bạn nhập chưa đúng email!";
+            } else {
+                document.getElementById('erremail').innerHTML = "";
+            }
+
+            if (pass == "") {
+                document.getElementById('errpass').innerHTML = "Bạn chưa nhập mật khẩu!";
+            }
+            if (pass.length <= 8) {
+                document.getElementById('errpass').innerHTML = "Mật khẩu của bạn phải từ 8 kí tự trở lên!";
+            } else {
+                document.getElementById('errpass').innerHTML = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="fix1"><i class="fa fa-comment"></i> GD Trực Tiếp</div>
+    <div class="fix2"><i class="fa fa-thumbs-up"></i> Cày Thuê</div>
+    <div class="fix3"><i class="fa fa-facebook-square"></i> FB Admin</div>
+    <div class="fix4"><i class="fa fa-phone"></i> 01645000921</div>
+    <div id="a" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#a" data-slide-to="0" class="active"></li>
+            <li data-target="#a" data-slide-to="1"></li>
+            <li data-target="#a" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="wallpaper-lol_011930457.jpg" style="width:100%;height:400px;" />
+                <div class="carousel-caption">
+                    <h3>LIÊN MINH</h3><p>Thanks you!</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="hinh-anh-hinh-nen-lol-lien-minh-huyen-thoai-dep-nhat-7.jpg" style="width:100%;height:400px;" />
+                <div class="carousel-caption">
+                    <h3>LIÊN MINH</h3><p>Thanks you!</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="league-of-legends-champions-hd-wallpaper-1920x1080.jpg" style="width:100%;height:400px;" />
+                <div class="carousel-caption">
+                    <h3>LIÊN MINH</h3><p>Thanks you!</p>
+                </div>
+            </div>
+
+            <a href="#a" class="left carousel-control" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a href="#a" class="right carousel-control" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
+
+    <table id="id01">
+        <tr>
+            <th><a href="#" style="text-decoration:none;color:#ffffff;">TRANG CHỦ</a></th>
+            <th><a href="#" style="text-decoration:none;color:#ffffff;">HƯỚNG DẪN</a></th>
+            <th><a href="#" style="text-decoration:none;color:#ffffff;">ĐIỀU KHOẢN</a></th>
+            <th class="drop">
+                <a href="#" style="text-decoration:none;color:#ffffff;">TIN TỨC</a>
+                <div class="dropdown">
+                    <a href="#">2011</a>
+                    <a href="#">2012</a>
+                    <a href="#">2013</a>
+                    <a href="#">2014</a>
+                    <a href="#">2015</a>
+                    <a href="#">2016</a>
+                    <a href="#">2017</a>
+                    <a href="#">2018</a>
+                </div>
+            </th>
+            <th><a href="#" style="text-decoration:none;color:#ffffff;">NẠP TIỀN</a></th>
+            <th>
+                <button style="button;padding:5px;border-radius:8px;background-color:#4cff00;" onclick="document.getElementById('id04').style.display='block'"><i class="fa fa-user"></i> Đăng Nhập</button>
+                <div id="id04" class="modal">
+                    <div class="modal-content">
+                        <form>
+                            <h4 style="color:#42f60e">THÔNG TIN ĐĂNG NHẬP</h4>
+                            <p style="color:#4cff00">User: </p>
+                            <input type="text" id="name" placeholder="Username...." /><br />
+                            <span id="errname" class="error"></span>
+                            <p style="color:#4cff00">Email: </p>
+                            <input type="text" id="email" placeholder="Email...." /><br />
+                            <span id="erremail" class="error"></span>
+                            <p style="color:#4cff00">Password: </p>
+                            <input type="password" id="pass" placeholder="Password...." /><br />
+                            <span id="errpass" class="error"></span>
+                            <br /><br /><br />
+                            <input type="submit" value="Đăng Nhập" onclick="Ktra(); return false;" />
+                        </form>
+                        <script>
+                              // Get the modal
+                               var modal = document.getElementById('id04');
+
+                               // When the user clicks anywhere outside of the modal, close it
+                                window.onclick = function(event) {
+                                if (event.target == modal) {
+                                modal.style.display = "none";
+                                }
+                                }
+                        </script>
+                    </div>
+                </div>
+            </th>
+        </tr>
+    </table>
+    <marquee style="color:#ffffff;font-size:20px;">
+        Shop Acc Liên Minh | Shop Acc LM Uy Tín Giá Rẻ No.1 | shopac360.com‎ Shop Acc Liên Minh Uy Tín | Giảm Giá Hôm Nay Chỉ 20k/Acc‎‎ Shop Acc Lmht , Shop Liên Quân Giá Rẻ , Uy Tín
+    </marquee>
+
+    <div style="margin-left:20px">
+        <div class="u">
+            <center><h1 style="color:#ff6a00">User Giao Dịch Nhiều Nhất</h1></center>
+            <table>
+                <tr>
+                    <th style="color:#ffd800;text-align:center;">Bray</th>
+                    <th><input type="submit" style="padding:5px;border-radius:8px;background-color:#4cff00;text-align:center;" value="2,000,000đ" /></th>
+                </tr>
+                <br />
+                <tr>
+                    <th style="color:#ffd800;text-align:center;">Dế Choắt</th>
+                    <th><input type="submit" style="padding:5px;border-radius:8px;background-color:#4cff00;text-align:center;" value="5,000,000đ" /></th>
+                </tr>
+                <tr>
+                    <th style="color:#ffd800;text-align:center;">Bewhy</th>
+                    <th><input type="submit" style="padding:5px;border-radius:8px;background-color:#4cff00;text-align:center;" value="1,500,000đ" /></th>
+                </tr>
+                <tr>
+                    <th style="color:#ffd800;text-align:center;">YuongB</th>
+                    <th><input type="submit" style="padding:5px;border-radius:8px;background-color:#4cff00;text-align:center;" value="7,000,000đ" /></th>
+                </tr>
+                <tr>
+                    <th style="color:#ffd800;text-align:center;">BlackB</th>
+                    <th><input type="submit" style="padding:5px;border-radius:8px;background-color:#4cff00;text-align:center;" value="8,500,000đ" /></th>
+                </tr>
+            </table>
+        </div>
+        <div class="l">
+          <video width="600" controls>
+                 <source src="Everything I Need.mp4" type="video/mp4" />
+            </video>
+          <!-- <iframe width="600" height="350" src="https://www.youtube.com/watch?v=to3wELQ31OU"></iframe> -->
+        </div>
+    </div>
+    <br />
+    <table id="id02">
+        <td>
+            <select>
+                <option>Tìm Theo Giá</option>
+                <option>Dưới 500k</option>
+                <option>Dưới 1tr</option>
+                <option>Dưới 2tr</option>
+            </select>
+        </td>
+        <td>
+            <select>
+                <option>Tìm Theo Rank</option>
+                <option>Đồng</option>
+                <option>Bạc</option>
+                <option>Vàng</option>
+                <option>Bạch Kim</option>
+                <option>Kim Cương</option>
+                <option>Cao Thủ</option>
+                <option>Thách Đấu</option>
+            </select>
+        </td>
+        <td>
+            <input type="text" placeholder="Nhập miêu tả..." class="form-control" />
+        </td>
+        <td>
+            <input type="text" placeholder="Nhập miêu tả..." class="form-control" />
+        </td>
+        <td>
+            <button type="button" style="padding:5px;border-radius:8px;background-color:#ffd800;"><i class="fa fa-search"></i> Search</button>
+        </td>
+    </table>
+    <br />
+    <h1 style="color:#ff6a00">CÁC MỤC NỔI BẬT >></h1>
+
+    <table id="id03" border="1" style="margin-left:32px;border:1px solid #4cff00;">
+        <tr>
+            <th>
+                <a href="#">
+                    <img src="1470563511_maxresdefault.jpg" style="width:330px;height:200px;" />
+                    <div class="caption" style="color:#ff6a00">
+                        <center><p>100Skin</p><p>87 Tướng</p><p>Rank Bạch Kim</p></center>
+                    </div>
+                </a>
+            </th>
+
+            <th>
+                <a href="#">
+                    <img src="a5-1497866194173.png" style="width:330px;height:200px;" />
+                    <div class="caption" style="color:#ff6a00">
+                        <center><p>98Skin</p><p>92 Tướng</p><p>Rank Bạch Kim</p></center>
+                    </div>
+                </a>
+            </th>
+
+            <th>
+                <a href="#">
+                    <img src="bandicam 2017-06-30 18-43-13-621.jpg" style="width:330px;height:200px;" />
+                    <div class="caption" style="color:#ff6a00">
+                        <center><p>97Skin</p><p>79 Tướng</p><p>Rank Kim Cương</p></center>
+                    </div>
+                </a>
+            </th>
+
+            <th>
+                <a href="#">
+                    <img src="lcu-360-3.jpg" style="width:330px;height:200px;" />
+                    <div class="caption" style="color:#ff6a00">
+                        <center><p>96Skin</p><p>121 Tướng</p><p>Rank Cao Thủ</p></center>
+                    </div>
+                </a>
+            </th>
+        </tr>
+
+        <tr>
+            <th>
+                <a href="#">
+                    <img src="lcu-360-5.jpg" style="width:330px;height:200px;" />
+                    <div class="caption" style="color:#ff6a00">
+                        <center><p>89Skin</p><p>132 Tướng</p><p>Rank Bạch Kim</p></center>
+                    </div>
+                </a>
+            </th>
+
+            <th>
+                <a href="#">
+                    <img src="lcu-360-6.jpg" style="width:330px;height:200px;" />
+                    <div class="caption" style="color:#ff6a00">
+                        <center><p>95Skin</p><p>83 Tướng</p><p>Rank Bạch Kim</p></center>
+                    </div>
+                </a>
+            </th>
+
+            <th>
+                <a href="#">
+                    <img src="lcu-360-7.jpg" style="width:330px;height:200px;" />
+                    <div class="caption" style="color:#ff6a00">
+                        <center><p>91Skin</p><p>109 Tướng</p><p>Rank Kim Cương</p></center>
+                    </div>
+                </a>
+            </th>
+
+            <th>
+                <a href="#">
+                    <img src="lcu-360-8.jpg" style="width:330px;height:200px;" />
+                    <div class="caption" style="color:#ff6a00">
+                        <center><p>88Skin</p><p>145 Tướng</p><p>Rank Cao Thủ</p></center>
+                    </div>
+                </a>
+            </th>
+        </tr>
+
+        <tr>
+            <th>
+                <a href="#">
+                    <img src="Level-Lien-Minh-Huyen-Thoai-2.jpg" style="width:330px;height:200px;" />
+                    <div class="caption" style="color:#ff6a00">
+                        <center><p>123Skin</p><p>139 Tướng</p><p>Rank Bạch Kim</p></center>
+                    </div>
+                </a>
+            </th>
+
+            <th>
+                <a href="#">
+                    <img src="LoL-3.jpg" style="width:330px;height:200px;" />
+                    <div class="caption" style="color:#ff6a00">
+                        <center><p>156Skin</p><p>96 Tướng</p><p>Rank Bạch Kim</p></center>
+                    </div>
+                </a>
+            </th>
+
+            <th>
+                <a href="#">
+                    <img src="renga.jpg" style="width:330px;height:200px;" />
+                    <div class="caption" style="color:#ff6a00">
+                        <center><p>120Skin</p><p>128 Tướng</p><p>Rank Kim Cương</p></center>
+                    </div>
+                </a>
+            </th>
+
+            <th>
+                <a href="#">
+                    <img src="kul_news_kalis.png" style="width:330px;height:200px;" />
+                    <div class="caption" style="color:#ff6a00">
+                        <center><p>99Skin</p><p>156 Tướng</p><p>Rank Cao Thủ</p></center>
+                    </div>
+                </a>
+            </th>
+        </tr>
+    </table>
+    <hr />
+    <div>
+        <button style="button;padding:5px;border-radius:8px;background-color:#4cff00;">1</button>
+        <button style="button;padding:5px;border-radius:8px;background-color:#4cff00;">2</button>
+        <button style="button;padding:5px;border-radius:8px;background-color:#4cff00;">3</button>
+        <button style="button;padding:5px;border-radius:8px;background-color:#4cff00;">4</button>
+        <button style="button;padding:5px;border-radius:8px;background-color:#4cff00;">5</button>
+        <button style="button;padding:5px;border-radius:8px;background-color:#4cff00;">6</button>
+        <button style="button;padding:5px;border-radius:8px;background-color:#4cff00;">>></button>
+    </div>
+    <br /><br />
+    <center><h2 style="color:#ffffff">TẠI SAO NÊN MUA TÀI KHOẢN LOL TỪ CHÚNG TÔI?</h2></center>
+    <div>
+        <div class="mot">
+            <p><h3>Nhận ngay tài khoản</h3></p>
+            <p>Khi bạn mua một tài khoản LoL từ chúng tôi, bạn sẽ nhận được ngay lập tức sau khi hoàn tất việc mua. hệ thống tự động của chúng tôi làm việc 24/7.</p>
+        </div>
+        <div class="hai">
+            <p><h3>Bảo hành trọn đời</h3></p>
+            <p>Chúng tôi bảo hành cho tất cả các tài khoản LoL. Nếu một cái gì đó xảy ra với tài khoản LoL của bạn, bạn sẽ được đổi ngay 1 tài khoản khác của chúng tôi! Không hổ trợ cho trường hợp dùng phần mềm thứ 3 bị khóa acc</p>
+        </div>
+        <div class="ba">
+            <p><h3>An toàn & Bảo mật</h3></p>
+            <p>Các tài khoản đều chưa đăng ký thông tin bảo mật nào nên các bạn có thể đăng ký ngay thông tin của mình vào để bảo mật tài khoản.</p>
+        </div>
+        <div class="bon">
+            <p><h3>Tài khoản chất lượng</h3></p>
+            <p>Tài khoản của chúng tôi phù hợp cho từng cá nhân, tài khoản giá rẻ cho tới tài khoản tiền triệu phù hợp cho mọi túi tiền!</p>
+        </div>
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <div style="color:#ffffff">
+        <center>
+            <p>Shop Acc Uy Tín Với Giá Bán Rẻ Nhất Thị Trường</p>
+            <p>- Số 5 Ngõ 173 TRẦN THÁI TÔNG, PHƯỜNG TRẦN HƯNG ĐẠO, THÁI BÌNH</p>
+            <p>- HotLine : 0915.909.642</p>
+            <p>- Fanpage: https://www.facebook.com/acclienminhgiare.com.vn</p>
+        </center>
+    </div>
+</body>
+</html>
